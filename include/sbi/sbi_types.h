@@ -44,7 +44,9 @@ typedef unsigned long long	uint64_t;
 #error "Unexpected __riscv_xlen"
 #endif
 
+#if __STDC_VERSION__ < 202311L
 typedef int			bool;
+#endif
 typedef unsigned long		ulong;
 typedef unsigned long		uintptr_t;
 typedef unsigned long		size_t;
