@@ -260,10 +260,9 @@ run_command() {
     local cmd="$1"
     if [ -n "$DIRECT_BUILD" ] && [ "$DIRECT_BUILD" != "0" ]; then
         [ "$DEBUG" = true ] &&  echo "[DIRECT_BUILD] Executing locally: $cmd"
-        command -v riscv64-unknown-linux-gnu-gcc > /dev/null || \
-        (echo "Install cross compile and add to PATH" && exit 1)
+        command -v ${CROSS_COMPILE}gcc > /dev/null || \
+        (echo "Install cross compile (${CROSS_COMPILE}gcc) and add to PATH" && exit 1)
         export ARCH=riscv
-        export CROSS_COMPILE=riscv64-unknown-linux-gnu-
         bash -c "$cmd"
     else
         [ "$DEBUG" = true ] && echo "Building in container..."
